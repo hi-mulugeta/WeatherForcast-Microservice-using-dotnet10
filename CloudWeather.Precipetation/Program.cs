@@ -28,3 +28,4 @@ app.MapGet("/observation/{zipCode}", async(string zipCode,[FromQuery] int? days,
     return Results.Ok(result);
 }); 
 app.Run();
+
