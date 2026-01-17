@@ -112,6 +112,15 @@ void PostPrecip(int lowTemp, string zip, DateTime day, HttpClient client)
             CreatedOn=day   
         };
     }
+    var PrecipResponse=client.PostAsJsonAsync("observation",precipitation).Result;
+    if(PrecipResponse.IsSuccessStatusCode)
+    {
+        Console.WriteLine($"Posted precipitation for {zip} on {day.ToShortDateString()}: {precipitation.WeatherType} {precipitation.AmountInches} inches");
+    }
+    else
+    {
+        Console.WriteLine($"Failed to post precipitation for {zip} on {day.ToShortDateString()}: {PrecipResponse.StatusCode}");
+    }
 }
 
 

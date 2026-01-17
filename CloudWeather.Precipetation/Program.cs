@@ -30,7 +30,7 @@ app.MapGet("/observation/{zipCode}", async(string zipCode,[FromQuery] int? days,
 app.MapPost("/observation", async(Precipitation precip,PricipDbContext db) =>
 {
     precip.CreatedAt=precip.CreatedAt.ToUniversalTime();
-    await db.Precipitations.AddAsync(precip);
+    await db.AddAsync(precip);
     await db.SaveChangesAsync();
 });
 app.Run();
